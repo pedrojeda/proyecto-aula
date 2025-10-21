@@ -1,0 +1,88 @@
+-- 1) Eliminar base de datos si ya existe
+DROP DATABASE IF EXISTS `leucemias`;
+
+-- 2) Crear y usar la base de datos
+CREATE DATABASE `leucemias`
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+USE `leucemias`;
+
+-- 3) Tabla de roles
+CREATE TABLE `roles` (
+  `role_id`   INT AUTO_INCREMENT PRIMARY KEY,
+  `role_name` VARCHAR(20) NOT NULL UNIQUE
+);
+
+INSERT INTO `roles` (`role_name`) VALUES
+  ('profesor'),
+  ('estudiante');
+
+-- 4) Tabla de usuarios
+CREATE TABLE `users` (
+  `user_id`    INT AUTO_INCREMENT PRIMARY KEY,
+  `user_name`  VARCHAR(100) NOT NULL,
+  `user_email` VARCHAR(150) NOT NULL UNIQUE,
+  `user_pass`  VARCHAR(255) NOT NULL,
+  `user_role`  INT NOT NULL,
+  `user_crea`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_role`) REFERENCES `roles`(`role_id`)
+);
+
+-- 5) Tabla de preguntas
+CREATE TABLE `questions` (
+  `ques_id`          INT AUTO_INCREMENT PRIMARY KEY,
+  `ques_text`        TEXT NOT NULL,
+  `ques_type`        ENUM('single_choice','true_false','multiple_select') NOT NULL,
+  `ques_category`    VARCHAR(100) NOT NULL,
+  `ques_image`       VARCHAR(255) DEFAULT NULL,
+  `ques_explanation` TEXT,
+  `ques_by`          INT NOT NULL,
+  `ques_crea`        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`ques_by`) REFERENCES `users`(`user_id`)
+);
+
+-- 6) Tabla de opciones de pregunta
+CREATE TABLE `question_options` (
+  `quesop_id`   INT AUTO_INCREMENT PRIMARY KEY,
+  `quesop_ques` INT NOT NULL,
+  `quesop_text` TEXT NOT NULL,
+  `quesop_isco` TINYINT(1) NOT NULL DEFAULT 0,
+  FOREIGN KEY (`quesop_ques`) REFERENCES `questions`(`ques_id`) ON DELETE CASCADE
+);
+
+-- 7) Tabla de configuración general
+CREATE TABLE `settings` (
+  `setting_key`   VARCHAR(64) NOT NULL PRIMARY KEY,
+  `setting_value` VARCHAR(255) NOT NULL
+);
+
+-- 8) Tabla de puntuaciones del juego
+CREATE TABLE `game_scores` (
+  `id`        INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id`   INT NOT NULL,
+  `score`     INT NOT NULL,
+  `played_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY (`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
+) ENGINE=MyISAM;
+
+-- 9) Tabla de respuestas de estudiantes
+CREATE TABLE `student_responses` (
+  `studr_id`   INT AUTO_INCREMENT PRIMARY KEY,
+  `studr_user` INT NOT NULL,
+  `studr_ques` INT NOT NULL,
+  `studr_sele` INT NOT NULL,
+  `studr_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`studr_user`) REFERENCES `users`(`user_id`),
+  FOREIGN KEY (`studr_ques`) REFERENCES `questions`(`ques_id`),
+  FOREIGN KEY (`studr_sele`) REFERENCES `question_options`(`quesop_id`)
+);
+
+-- 10) Tabla de estadísticas por pregunta
+CREATE TABLE `question_stats` (
+  `ques_id`     INT PRIMARY KEY,
+  `total_cnt`   INT NOT NULL DEFAULT 0,
+  `correct_cnt` INT NOT NULL DEFAULT 0,
+  `updated_at`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`ques_id`) REFERENCES `questions`(`ques_id`) ON DELETE CASCADE
+);

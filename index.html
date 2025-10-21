@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diagnóstico Morfológico de Leucemias</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Iconos opcionales -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="../bootstrap/css/index.css" />
+</head>
+<body>
+
+  <!-- Navbar fija -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="../images/PUCESD.png" alt="PUCE Santo Domingo" height="40" class="imagen" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-3">
+          <li class="nav-item"><a class="nav-link" href="#quien">¿Para quién?</a></li>
+          <li class="nav-item"><a class="nav-link" href="#objetivo">Objetivo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contenido">Contenido</a></li>
+          <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
+        </ul>
+        <div class="ms-auto">
+          <button class="btn btn-outline-primary btn-rounded me-2" onclick="location.href='/views/login.php'">
+            Iniciar sesión
+          </button>
+          <button class="btn btn-primary btn-rounded" onclick="location.href='/views/register.php'">
+            Crear cuenta gratuita
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-panel p-5 rounded-4 bg-white shadow-lg mx-auto">
+        <h1 class="display-5 fw-bold">Sistema Educativo de Diagnóstico Morfológico de Leucemias</h1>
+        <p class="lead mb-4">
+          Dominio experto en Leucemias Mieloides y Linfoides. Una plataforma completa para tu formación y actualización profesional.
+        </p>
+        <div>
+          <button class="btn btn-primary btn-lg btn-rounded me-2" onclick="location.href='../views/login.php'">
+            Iniciar sesión
+          </button>
+          <button class="btn btn-outline-primary btn-lg btn-rounded" onclick="location.href='../views/register.php'">
+            Crear cuenta gratuita
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Contenido Principal -->
+  <main class="main-content py-5">
+    <div class="container">
+
+      <div class="row gy-4">
+        <div class="col-md-6">
+          <div class="section p-4 rounded-3 bg-white shadow-sm" id="quien">
+            <h2 class="text-primary">¿Para quién es esta plataforma?</h2>
+            <p>Está diseñada para estudiantes de laboratorio clínico y ciencias de la salud o afines que fortalecer sus conocimientos sobre la identificación y diagnostrico de las leucemias de acuerdo a la morfológia.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="section p-4 rounded-3 bg-white shadow-sm" id="objetivo">
+            <h2 class="text-primary">Objetivo del sistema</h2>
+            <p>Brindar un entorno educativo accesible y especializado que permita la comprensión detallada de las características morfológicas de las leucemias mieloides y linfoides, a través de recursos interactivos.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="section p-4 rounded-3 bg-white shadow-sm" id="contenido">
+            <h2 class="text-primary">¿Qué podrás encontrar?</h2>
+            <ul class="list-unstyled mb-0">
+              <li>• Galerías de imágenes con frotis sanguíneos</li>
+              <li>• Descripción de los subtipos de leucemias</li>
+              <li>• Comparaciones entre leucemias mieloides y linfoides</li>
+              <li>• Autoevaluaciones</li>
+              <li>• Juegos interactivos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="section p-4 rounded-3 bg-white shadow-sm" id="beneficios">
+            <h2 class="text-primary">Beneficios de usar esta plataforma</h2>
+            <ul class="list-unstyled mb-0">
+              <li>• Estudiar desde cualquier lugar</li>
+              <li>• Mejorar tu competencia técnica para el diagnóstico de enfermedades hematológicas.</li>
+              <li>• Relacionar la teoría con la observación de las placas</li>
+              <li>• Reconocer las características morfológicas para el diagnóstico de las enfermedades hematológicas. (Leucemias Mieloide y Linfoides)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-3 mt-auto">
+    <div class="container text-center small">
+      &copy; 2025 Diagnóstico de Leucemias | Plataforma académica
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
